@@ -44,8 +44,11 @@ next-env.d.ts
 # Coverage directory used by tools like istanbul
 coverage/
 
-# Vite
+# Vite, Nitro, and Vercel output
 .vite/
+.output/
+.wrangler/
+.vercel/
 
 # Misc
 *.pem

@@ -1,7 +1,7 @@
 import { json } from "@tanstack/react-start";
-import { createAPIFileRoute } from "@tanstack/react-start/api";
+import { createFileRoute } from "@tanstack/react-router";
 import { db, products } from "@/db";
-import { parse } from "cookie";
+import { parseCookieHeader } from "@/lib/cookies";
 import { validateSession } from "@/lib/auth";
 import { z } from "zod";
 
@@ -19,11 +19,12 @@ const createProductSchema = z.object({
   inStock: z.boolean().default(true),
 });
 
-export const APIRoute = createAPIFileRoute("/api/admin/products/create")({
+export const Route = createFileRoute("/api/admin/products/create")({
+  server: { handlers: {
   POST: async ({ request }) => {
     try {
       const cookieHeader = request.headers.get("Cookie");
-      const cookies = parse(cookieHeader || "");
+      const cookies = parseCookieHeader(cookieHeader);
       const session = await validateSession(cookies.dam_session);
 
       if (!session || session.role !== "admin") {
@@ -56,4 +57,5 @@ export const APIRoute = createAPIFileRoute("/api/admin/products/create")({
       );
     }
   },
+  } },
 });

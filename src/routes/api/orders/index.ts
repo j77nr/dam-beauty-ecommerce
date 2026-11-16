@@ -1,14 +1,15 @@
 import { json } from "@tanstack/react-start";
-import { createAPIFileRoute } from "@tanstack/react-start/api";
+import { createFileRoute } from "@tanstack/react-router";
 import { db, orders, orderItems, products } from "@/db";
 import { eq, desc } from "drizzle-orm";
-import { parse } from "cookie";
+import { parseCookieHeader } from "@/lib/cookies";
 import { validateSession } from "@/lib/auth";
 
-export const APIRoute = createAPIFileRoute("/api/orders")({
+export const Route = createFileRoute("/api/orders/")({
+  server: { handlers: {
   GET: async ({ request }) => {
     const cookieHeader = request.headers.get("Cookie");
-    const cookies = parse(cookieHeader || "");
+    const cookies = parseCookieHeader(cookieHeader);
     const session = await validateSession(cookies.dam_session);
 
     if (!session) {
@@ -49,4 +50,5 @@ export const APIRoute = createAPIFileRoute("/api/orders")({
       orders: ordersWithItems,
     });
   },
+  } },
 });

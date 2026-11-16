@@ -1,6 +1,7 @@
 import { json } from "@tanstack/react-start";
-import { createAPIFileRoute } from "@tanstack/react-start/api";
+import { createFileRoute } from "@tanstack/react-router";
 import { authenticateUser, createSession } from "@/lib/auth";
+import { sessionCookieAttributes } from "@/lib/cookies";
 import { z } from "zod";
 
 const loginSchema = z.object({
@@ -8,7 +9,8 @@ const loginSchema = z.object({
   password: z.string().min(1, "Le mot de passe est requis"),
 });
 
-export const APIRoute = createAPIFileRoute("/api/auth/login")({
+export const Route = createFileRoute("/api/auth/login")({
+  server: { handlers: {
   POST: async ({ request }) => {
     try {
       const body = await request.json();
@@ -33,7 +35,7 @@ export const APIRoute = createAPIFileRoute("/api/auth/login")({
         },
         {
           headers: {
-            "Set-Cookie": `dam_session=${sessionId}; Path=/; HttpOnly; SameSite=Lax; Expires=${expiresAt.toUTCString()}`,
+            "Set-Cookie": `dam_session=${sessionId}; ${sessionCookieAttributes(request)}; Expires=${expiresAt.toUTCString()}`,
           },
         }
       );
@@ -45,4 +47,5 @@ export const APIRoute = createAPIFileRoute("/api/auth/login")({
       return json({ success: false, error: error.message || "Erreur de connexion" }, { status: 401 });
     }
   },
+  } },
 });

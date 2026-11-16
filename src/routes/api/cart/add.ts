@@ -1,18 +1,19 @@
 import { json } from "@tanstack/react-start";
-import { createAPIFileRoute } from "@tanstack/react-start/api";
+import { createFileRoute } from "@tanstack/react-router";
 import { db, carts, cartItems, products } from "@/db";
 import { eq, and } from "drizzle-orm";
-import { parse } from "cookie";
+import { parseCookieHeader, sessionCookieAttributes } from "@/lib/cookies";
 import { validateSession } from "@/lib/auth";
 import { nanoid } from "nanoid";
 import { z } from "zod";
 
 const addToCartSchema = z.object({
-  productId: z.number(),
-  quantity: z.number().min(1).default(1),
+  productId: z.number().int().positive(),
+  quantity: z.number().int().min(1).max(99).default(1),
 });
 
-export const APIRoute = createAPIFileRoute("/api/cart/add")({
+export const Route = createFileRoute("/api/cart/add")({
+  server: { handlers: {
   POST: async ({ request }) => {
     try {
       const body = await request.json();
@@ -28,7 +29,7 @@ export const APIRoute = createAPIFileRoute("/api/cart/add")({
       }
 
       const cookieHeader = request.headers.get("Cookie");
-      const cookies = parse(cookieHeader || "");
+      const cookies = parseCookieHeader(cookieHeader);
       const session = await validateSession(cookies.dam_session);
 
       let sessionId = cookies.dam_cart_session;
@@ -74,7 +75,7 @@ export const APIRoute = createAPIFileRoute("/api/cart/add")({
         { success: true, message: "Produit ajouté au panier" },
         {
           headers: sessionId
-            ? { "Set-Cookie": `dam_cart_session=${sessionId}; Path=/; HttpOnly; SameSite=Lax; Max-Age=2592000` }
+            ? { "Set-Cookie": `dam_cart_session=${sessionId}; ${sessionCookieAttributes(request)}; Max-Age=2592000` }
             : {},
         }
       );
@@ -85,4 +86,5 @@ export const APIRoute = createAPIFileRoute("/api/cart/add")({
       return json({ success: false, error: "Erreur lors de l'ajout au panier" }, { status: 500 });
     }
   },
+  } },
 });

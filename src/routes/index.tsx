@@ -75,7 +75,7 @@ function HomePage() {
             <Link
               key={c.n}
               to={c.to}
-              search={{ cat: c.hash }}
+              search={{ cat: c.hash as "capillaire" | "visage" | "naturel" }}
               className="flex items-baseline gap-4 group"
             >
               <span className="text-[10px] text-muted-foreground">{c.n}</span>

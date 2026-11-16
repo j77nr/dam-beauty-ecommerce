@@ -11,15 +11,42 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TemoignagesRouteImport } from './routes/temoignages'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as PanierRouteImport } from './routes/panier'
+import { Route as InscriptionRouteImport } from './routes/inscription'
 import { Route as GalerieRouteImport } from './routes/galerie'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ConnexionRouteImport } from './routes/connexion'
+import { Route as CompteRouteImport } from './routes/compte'
+import { Route as CommanderRouteImport } from './routes/commander'
+import { Route as CommandeConfirmeeRouteImport } from './routes/commande-confirmee'
 import { Route as CatalogueRouteImport } from './routes/catalogue'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AProposRouteImport } from './routes/a-propos'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as CatalogueSlugRouteImport } from './routes/catalogue.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as ApiProductsRouteImport } from './routes/api/products'
+import { Route as AdminProduitsRouteImport } from './routes/admin/produits'
+import { Route as AdminCommandesRouteImport } from './routes/admin/commandes'
+import { Route as ApiOrdersIndexRouteImport } from './routes/api/orders/index'
+import { Route as ApiCartIndexRouteImport } from './routes/api/cart/index'
+import { Route as ApiOrdersCreateRouteImport } from './routes/api/orders/create'
+import { Route as ApiOrdersIdRouteImport } from './routes/api/orders/$id'
+import { Route as ApiCartUpdateRouteImport } from './routes/api/cart/update'
+import { Route as ApiCartRemoveRouteImport } from './routes/api/cart/remove'
+import { Route as ApiCartAddRouteImport } from './routes/api/cart/add'
+import { Route as ApiAuthRegisterRouteImport } from './routes/api/auth/register'
+import { Route as ApiAuthMeRouteImport } from './routes/api/auth/me'
+import { Route as ApiAuthLogoutRouteImport } from './routes/api/auth/logout'
+import { Route as ApiAuthLoginRouteImport } from './routes/api/auth/login'
+import { Route as ApiAdminStatsRouteImport } from './routes/api/admin/stats'
+import { Route as ApiAdminOrdersRouteImport } from './routes/api/admin/orders'
+import { Route as ApiAdminProductsUpdateRouteImport } from './routes/api/admin/products/update'
+import { Route as ApiAdminProductsDeleteRouteImport } from './routes/api/admin/products/delete'
+import { Route as ApiAdminProductsCreateRouteImport } from './routes/api/admin/products/create'
+import { Route as ApiAdminOrdersUpdateStatusRouteImport } from './routes/api/admin/orders/update-status'
 
 const TemoignagesRoute = TemoignagesRouteImport.update({
   id: '/temoignages',
@@ -29,6 +56,16 @@ const TemoignagesRoute = TemoignagesRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PanierRoute = PanierRouteImport.update({
+  id: '/panier',
+  path: '/panier',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InscriptionRoute = InscriptionRouteImport.update({
+  id: '/inscription',
+  path: '/inscription',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalerieRoute = GalerieRouteImport.update({
@@ -44,6 +81,26 @@ const FaqRoute = FaqRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConnexionRoute = ConnexionRouteImport.update({
+  id: '/connexion',
+  path: '/connexion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompteRoute = CompteRouteImport.update({
+  id: '/compte',
+  path: '/compte',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommanderRoute = CommanderRouteImport.update({
+  id: '/commander',
+  path: '/commander',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommandeConfirmeeRoute = CommandeConfirmeeRouteImport.update({
+  id: '/commande-confirmee',
+  path: '/commande-confirmee',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CatalogueRoute = CatalogueRouteImport.update({
@@ -66,6 +123,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CatalogueSlugRoute = CatalogueSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -76,32 +138,187 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => BlogRoute,
 } as any)
+const ApiProductsRoute = ApiProductsRouteImport.update({
+  id: '/api/products',
+  path: '/api/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminProduitsRoute = AdminProduitsRouteImport.update({
+  id: '/admin/produits',
+  path: '/admin/produits',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminCommandesRoute = AdminCommandesRouteImport.update({
+  id: '/admin/commandes',
+  path: '/admin/commandes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiOrdersIndexRoute = ApiOrdersIndexRouteImport.update({
+  id: '/api/orders/',
+  path: '/api/orders/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCartIndexRoute = ApiCartIndexRouteImport.update({
+  id: '/api/cart/',
+  path: '/api/cart/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiOrdersCreateRoute = ApiOrdersCreateRouteImport.update({
+  id: '/api/orders/create',
+  path: '/api/orders/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiOrdersIdRoute = ApiOrdersIdRouteImport.update({
+  id: '/api/orders/$id',
+  path: '/api/orders/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCartUpdateRoute = ApiCartUpdateRouteImport.update({
+  id: '/api/cart/update',
+  path: '/api/cart/update',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCartRemoveRoute = ApiCartRemoveRouteImport.update({
+  id: '/api/cart/remove',
+  path: '/api/cart/remove',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCartAddRoute = ApiCartAddRouteImport.update({
+  id: '/api/cart/add',
+  path: '/api/cart/add',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthRegisterRoute = ApiAuthRegisterRouteImport.update({
+  id: '/api/auth/register',
+  path: '/api/auth/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthMeRoute = ApiAuthMeRouteImport.update({
+  id: '/api/auth/me',
+  path: '/api/auth/me',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthLogoutRoute = ApiAuthLogoutRouteImport.update({
+  id: '/api/auth/logout',
+  path: '/api/auth/logout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthLoginRoute = ApiAuthLoginRouteImport.update({
+  id: '/api/auth/login',
+  path: '/api/auth/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminStatsRoute = ApiAdminStatsRouteImport.update({
+  id: '/api/admin/stats',
+  path: '/api/admin/stats',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminOrdersRoute = ApiAdminOrdersRouteImport.update({
+  id: '/api/admin/orders',
+  path: '/api/admin/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminProductsUpdateRoute = ApiAdminProductsUpdateRouteImport.update({
+  id: '/api/admin/products/update',
+  path: '/api/admin/products/update',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminProductsDeleteRoute = ApiAdminProductsDeleteRouteImport.update({
+  id: '/api/admin/products/delete',
+  path: '/api/admin/products/delete',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminProductsCreateRoute = ApiAdminProductsCreateRouteImport.update({
+  id: '/api/admin/products/create',
+  path: '/api/admin/products/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminOrdersUpdateStatusRoute =
+  ApiAdminOrdersUpdateStatusRouteImport.update({
+    id: '/update-status',
+    path: '/update-status',
+    getParentRoute: () => ApiAdminOrdersRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
   '/blog': typeof BlogRouteWithChildren
   '/catalogue': typeof CatalogueRouteWithChildren
+  '/commande-confirmee': typeof CommandeConfirmeeRoute
+  '/commander': typeof CommanderRoute
+  '/compte': typeof CompteRoute
+  '/connexion': typeof ConnexionRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/galerie': typeof GalerieRoute
+  '/inscription': typeof InscriptionRoute
+  '/panier': typeof PanierRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/temoignages': typeof TemoignagesRoute
+  '/admin/commandes': typeof AdminCommandesRoute
+  '/admin/produits': typeof AdminProduitsRoute
+  '/api/products': typeof ApiProductsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/catalogue/$slug': typeof CatalogueSlugRoute
+  '/admin/': typeof AdminIndexRoute
+  '/api/admin/orders': typeof ApiAdminOrdersRouteWithChildren
+  '/api/admin/stats': typeof ApiAdminStatsRoute
+  '/api/auth/login': typeof ApiAuthLoginRoute
+  '/api/auth/logout': typeof ApiAuthLogoutRoute
+  '/api/auth/me': typeof ApiAuthMeRoute
+  '/api/auth/register': typeof ApiAuthRegisterRoute
+  '/api/cart/add': typeof ApiCartAddRoute
+  '/api/cart/remove': typeof ApiCartRemoveRoute
+  '/api/cart/update': typeof ApiCartUpdateRoute
+  '/api/orders/$id': typeof ApiOrdersIdRoute
+  '/api/orders/create': typeof ApiOrdersCreateRoute
+  '/api/cart/': typeof ApiCartIndexRoute
+  '/api/orders/': typeof ApiOrdersIndexRoute
+  '/api/admin/orders/update-status': typeof ApiAdminOrdersUpdateStatusRoute
+  '/api/admin/products/create': typeof ApiAdminProductsCreateRoute
+  '/api/admin/products/delete': typeof ApiAdminProductsDeleteRoute
+  '/api/admin/products/update': typeof ApiAdminProductsUpdateRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
   '/blog': typeof BlogRouteWithChildren
   '/catalogue': typeof CatalogueRouteWithChildren
+  '/commande-confirmee': typeof CommandeConfirmeeRoute
+  '/commander': typeof CommanderRoute
+  '/compte': typeof CompteRoute
+  '/connexion': typeof ConnexionRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/galerie': typeof GalerieRoute
+  '/inscription': typeof InscriptionRoute
+  '/panier': typeof PanierRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/temoignages': typeof TemoignagesRoute
+  '/admin/commandes': typeof AdminCommandesRoute
+  '/admin/produits': typeof AdminProduitsRoute
+  '/api/products': typeof ApiProductsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/catalogue/$slug': typeof CatalogueSlugRoute
+  '/admin': typeof AdminIndexRoute
+  '/api/admin/orders': typeof ApiAdminOrdersRouteWithChildren
+  '/api/admin/stats': typeof ApiAdminStatsRoute
+  '/api/auth/login': typeof ApiAuthLoginRoute
+  '/api/auth/logout': typeof ApiAuthLogoutRoute
+  '/api/auth/me': typeof ApiAuthMeRoute
+  '/api/auth/register': typeof ApiAuthRegisterRoute
+  '/api/cart/add': typeof ApiCartAddRoute
+  '/api/cart/remove': typeof ApiCartRemoveRoute
+  '/api/cart/update': typeof ApiCartUpdateRoute
+  '/api/orders/$id': typeof ApiOrdersIdRoute
+  '/api/orders/create': typeof ApiOrdersCreateRoute
+  '/api/cart': typeof ApiCartIndexRoute
+  '/api/orders': typeof ApiOrdersIndexRoute
+  '/api/admin/orders/update-status': typeof ApiAdminOrdersUpdateStatusRoute
+  '/api/admin/products/create': typeof ApiAdminProductsCreateRoute
+  '/api/admin/products/delete': typeof ApiAdminProductsDeleteRoute
+  '/api/admin/products/update': typeof ApiAdminProductsUpdateRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -109,13 +326,40 @@ export interface FileRoutesById {
   '/a-propos': typeof AProposRoute
   '/blog': typeof BlogRouteWithChildren
   '/catalogue': typeof CatalogueRouteWithChildren
+  '/commande-confirmee': typeof CommandeConfirmeeRoute
+  '/commander': typeof CommanderRoute
+  '/compte': typeof CompteRoute
+  '/connexion': typeof ConnexionRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/galerie': typeof GalerieRoute
+  '/inscription': typeof InscriptionRoute
+  '/panier': typeof PanierRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/temoignages': typeof TemoignagesRoute
+  '/admin/commandes': typeof AdminCommandesRoute
+  '/admin/produits': typeof AdminProduitsRoute
+  '/api/products': typeof ApiProductsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/catalogue/$slug': typeof CatalogueSlugRoute
+  '/admin/': typeof AdminIndexRoute
+  '/api/admin/orders': typeof ApiAdminOrdersRouteWithChildren
+  '/api/admin/stats': typeof ApiAdminStatsRoute
+  '/api/auth/login': typeof ApiAuthLoginRoute
+  '/api/auth/logout': typeof ApiAuthLogoutRoute
+  '/api/auth/me': typeof ApiAuthMeRoute
+  '/api/auth/register': typeof ApiAuthRegisterRoute
+  '/api/cart/add': typeof ApiCartAddRoute
+  '/api/cart/remove': typeof ApiCartRemoveRoute
+  '/api/cart/update': typeof ApiCartUpdateRoute
+  '/api/orders/$id': typeof ApiOrdersIdRoute
+  '/api/orders/create': typeof ApiOrdersCreateRoute
+  '/api/cart/': typeof ApiCartIndexRoute
+  '/api/orders/': typeof ApiOrdersIndexRoute
+  '/api/admin/orders/update-status': typeof ApiAdminOrdersUpdateStatusRoute
+  '/api/admin/products/create': typeof ApiAdminProductsCreateRoute
+  '/api/admin/products/delete': typeof ApiAdminProductsDeleteRoute
+  '/api/admin/products/update': typeof ApiAdminProductsUpdateRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -124,39 +368,120 @@ export interface FileRouteTypes {
     | '/a-propos'
     | '/blog'
     | '/catalogue'
+    | '/commande-confirmee'
+    | '/commander'
+    | '/compte'
+    | '/connexion'
     | '/contact'
     | '/faq'
     | '/galerie'
+    | '/inscription'
+    | '/panier'
     | '/sitemap.xml'
     | '/temoignages'
+    | '/admin/commandes'
+    | '/admin/produits'
+    | '/api/products'
     | '/blog/$slug'
     | '/catalogue/$slug'
+    | '/admin/'
+    | '/api/admin/orders'
+    | '/api/admin/stats'
+    | '/api/auth/login'
+    | '/api/auth/logout'
+    | '/api/auth/me'
+    | '/api/auth/register'
+    | '/api/cart/add'
+    | '/api/cart/remove'
+    | '/api/cart/update'
+    | '/api/orders/$id'
+    | '/api/orders/create'
+    | '/api/cart/'
+    | '/api/orders/'
+    | '/api/admin/orders/update-status'
+    | '/api/admin/products/create'
+    | '/api/admin/products/delete'
+    | '/api/admin/products/update'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/a-propos'
     | '/blog'
     | '/catalogue'
+    | '/commande-confirmee'
+    | '/commander'
+    | '/compte'
+    | '/connexion'
     | '/contact'
     | '/faq'
     | '/galerie'
+    | '/inscription'
+    | '/panier'
     | '/sitemap.xml'
     | '/temoignages'
+    | '/admin/commandes'
+    | '/admin/produits'
+    | '/api/products'
     | '/blog/$slug'
     | '/catalogue/$slug'
+    | '/admin'
+    | '/api/admin/orders'
+    | '/api/admin/stats'
+    | '/api/auth/login'
+    | '/api/auth/logout'
+    | '/api/auth/me'
+    | '/api/auth/register'
+    | '/api/cart/add'
+    | '/api/cart/remove'
+    | '/api/cart/update'
+    | '/api/orders/$id'
+    | '/api/orders/create'
+    | '/api/cart'
+    | '/api/orders'
+    | '/api/admin/orders/update-status'
+    | '/api/admin/products/create'
+    | '/api/admin/products/delete'
+    | '/api/admin/products/update'
   id:
     | '__root__'
     | '/'
     | '/a-propos'
     | '/blog'
     | '/catalogue'
+    | '/commande-confirmee'
+    | '/commander'
+    | '/compte'
+    | '/connexion'
     | '/contact'
     | '/faq'
     | '/galerie'
+    | '/inscription'
+    | '/panier'
     | '/sitemap.xml'
     | '/temoignages'
+    | '/admin/commandes'
+    | '/admin/produits'
+    | '/api/products'
     | '/blog/$slug'
     | '/catalogue/$slug'
+    | '/admin/'
+    | '/api/admin/orders'
+    | '/api/admin/stats'
+    | '/api/auth/login'
+    | '/api/auth/logout'
+    | '/api/auth/me'
+    | '/api/auth/register'
+    | '/api/cart/add'
+    | '/api/cart/remove'
+    | '/api/cart/update'
+    | '/api/orders/$id'
+    | '/api/orders/create'
+    | '/api/cart/'
+    | '/api/orders/'
+    | '/api/admin/orders/update-status'
+    | '/api/admin/products/create'
+    | '/api/admin/products/delete'
+    | '/api/admin/products/update'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -164,11 +489,37 @@ export interface RootRouteChildren {
   AProposRoute: typeof AProposRoute
   BlogRoute: typeof BlogRouteWithChildren
   CatalogueRoute: typeof CatalogueRouteWithChildren
+  CommandeConfirmeeRoute: typeof CommandeConfirmeeRoute
+  CommanderRoute: typeof CommanderRoute
+  CompteRoute: typeof CompteRoute
+  ConnexionRoute: typeof ConnexionRoute
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
   GalerieRoute: typeof GalerieRoute
+  InscriptionRoute: typeof InscriptionRoute
+  PanierRoute: typeof PanierRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TemoignagesRoute: typeof TemoignagesRoute
+  AdminCommandesRoute: typeof AdminCommandesRoute
+  AdminProduitsRoute: typeof AdminProduitsRoute
+  ApiProductsRoute: typeof ApiProductsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  ApiAdminOrdersRoute: typeof ApiAdminOrdersRouteWithChildren
+  ApiAdminStatsRoute: typeof ApiAdminStatsRoute
+  ApiAuthLoginRoute: typeof ApiAuthLoginRoute
+  ApiAuthLogoutRoute: typeof ApiAuthLogoutRoute
+  ApiAuthMeRoute: typeof ApiAuthMeRoute
+  ApiAuthRegisterRoute: typeof ApiAuthRegisterRoute
+  ApiCartAddRoute: typeof ApiCartAddRoute
+  ApiCartRemoveRoute: typeof ApiCartRemoveRoute
+  ApiCartUpdateRoute: typeof ApiCartUpdateRoute
+  ApiOrdersIdRoute: typeof ApiOrdersIdRoute
+  ApiOrdersCreateRoute: typeof ApiOrdersCreateRoute
+  ApiCartIndexRoute: typeof ApiCartIndexRoute
+  ApiOrdersIndexRoute: typeof ApiOrdersIndexRoute
+  ApiAdminProductsCreateRoute: typeof ApiAdminProductsCreateRoute
+  ApiAdminProductsDeleteRoute: typeof ApiAdminProductsDeleteRoute
+  ApiAdminProductsUpdateRoute: typeof ApiAdminProductsUpdateRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -185,6 +536,20 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/panier': {
+      id: '/panier'
+      path: '/panier'
+      fullPath: '/panier'
+      preLoaderRoute: typeof PanierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inscription': {
+      id: '/inscription'
+      path: '/inscription'
+      fullPath: '/inscription'
+      preLoaderRoute: typeof InscriptionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/galerie': {
@@ -206,6 +571,34 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/connexion': {
+      id: '/connexion'
+      path: '/connexion'
+      fullPath: '/connexion'
+      preLoaderRoute: typeof ConnexionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compte': {
+      id: '/compte'
+      path: '/compte'
+      fullPath: '/compte'
+      preLoaderRoute: typeof CompteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/commander': {
+      id: '/commander'
+      path: '/commander'
+      fullPath: '/commander'
+      preLoaderRoute: typeof CommanderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/commande-confirmee': {
+      id: '/commande-confirmee'
+      path: '/commande-confirmee'
+      fullPath: '/commande-confirmee'
+      preLoaderRoute: typeof CommandeConfirmeeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/catalogue': {
@@ -236,6 +629,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/catalogue/$slug': {
       id: '/catalogue/$slug'
       path: '/$slug'
@@ -249,6 +649,146 @@ declare module '@tanstack/react-router' {
       fullPath: '/blog/$slug'
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof BlogRoute
+    }
+    '/api/products': {
+      id: '/api/products'
+      path: '/api/products'
+      fullPath: '/api/products'
+      preLoaderRoute: typeof ApiProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/produits': {
+      id: '/admin/produits'
+      path: '/admin/produits'
+      fullPath: '/admin/produits'
+      preLoaderRoute: typeof AdminProduitsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/commandes': {
+      id: '/admin/commandes'
+      path: '/admin/commandes'
+      fullPath: '/admin/commandes'
+      preLoaderRoute: typeof AdminCommandesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/orders/': {
+      id: '/api/orders/'
+      path: '/api/orders'
+      fullPath: '/api/orders/'
+      preLoaderRoute: typeof ApiOrdersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cart/': {
+      id: '/api/cart/'
+      path: '/api/cart'
+      fullPath: '/api/cart/'
+      preLoaderRoute: typeof ApiCartIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/orders/create': {
+      id: '/api/orders/create'
+      path: '/api/orders/create'
+      fullPath: '/api/orders/create'
+      preLoaderRoute: typeof ApiOrdersCreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/orders/$id': {
+      id: '/api/orders/$id'
+      path: '/api/orders/$id'
+      fullPath: '/api/orders/$id'
+      preLoaderRoute: typeof ApiOrdersIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cart/update': {
+      id: '/api/cart/update'
+      path: '/api/cart/update'
+      fullPath: '/api/cart/update'
+      preLoaderRoute: typeof ApiCartUpdateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cart/remove': {
+      id: '/api/cart/remove'
+      path: '/api/cart/remove'
+      fullPath: '/api/cart/remove'
+      preLoaderRoute: typeof ApiCartRemoveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cart/add': {
+      id: '/api/cart/add'
+      path: '/api/cart/add'
+      fullPath: '/api/cart/add'
+      preLoaderRoute: typeof ApiCartAddRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/register': {
+      id: '/api/auth/register'
+      path: '/api/auth/register'
+      fullPath: '/api/auth/register'
+      preLoaderRoute: typeof ApiAuthRegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/me': {
+      id: '/api/auth/me'
+      path: '/api/auth/me'
+      fullPath: '/api/auth/me'
+      preLoaderRoute: typeof ApiAuthMeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/logout': {
+      id: '/api/auth/logout'
+      path: '/api/auth/logout'
+      fullPath: '/api/auth/logout'
+      preLoaderRoute: typeof ApiAuthLogoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/login': {
+      id: '/api/auth/login'
+      path: '/api/auth/login'
+      fullPath: '/api/auth/login'
+      preLoaderRoute: typeof ApiAuthLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/stats': {
+      id: '/api/admin/stats'
+      path: '/api/admin/stats'
+      fullPath: '/api/admin/stats'
+      preLoaderRoute: typeof ApiAdminStatsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/orders': {
+      id: '/api/admin/orders'
+      path: '/api/admin/orders'
+      fullPath: '/api/admin/orders'
+      preLoaderRoute: typeof ApiAdminOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/products/update': {
+      id: '/api/admin/products/update'
+      path: '/api/admin/products/update'
+      fullPath: '/api/admin/products/update'
+      preLoaderRoute: typeof ApiAdminProductsUpdateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/products/delete': {
+      id: '/api/admin/products/delete'
+      path: '/api/admin/products/delete'
+      fullPath: '/api/admin/products/delete'
+      preLoaderRoute: typeof ApiAdminProductsDeleteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/products/create': {
+      id: '/api/admin/products/create'
+      path: '/api/admin/products/create'
+      fullPath: '/api/admin/products/create'
+      preLoaderRoute: typeof ApiAdminProductsCreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/orders/update-status': {
+      id: '/api/admin/orders/update-status'
+      path: '/update-status'
+      fullPath: '/api/admin/orders/update-status'
+      preLoaderRoute: typeof ApiAdminOrdersUpdateStatusRouteImport
+      parentRoute: typeof ApiAdminOrdersRoute
     }
   }
 }
@@ -275,17 +815,65 @@ const CatalogueRouteWithChildren = CatalogueRoute._addFileChildren(
   CatalogueRouteChildren,
 )
 
+interface ApiAdminOrdersRouteChildren {
+  ApiAdminOrdersUpdateStatusRoute: typeof ApiAdminOrdersUpdateStatusRoute
+}
+
+const ApiAdminOrdersRouteChildren: ApiAdminOrdersRouteChildren = {
+  ApiAdminOrdersUpdateStatusRoute: ApiAdminOrdersUpdateStatusRoute,
+}
+
+const ApiAdminOrdersRouteWithChildren = ApiAdminOrdersRoute._addFileChildren(
+  ApiAdminOrdersRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AProposRoute: AProposRoute,
   BlogRoute: BlogRouteWithChildren,
   CatalogueRoute: CatalogueRouteWithChildren,
+  CommandeConfirmeeRoute: CommandeConfirmeeRoute,
+  CommanderRoute: CommanderRoute,
+  CompteRoute: CompteRoute,
+  ConnexionRoute: ConnexionRoute,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
   GalerieRoute: GalerieRoute,
+  InscriptionRoute: InscriptionRoute,
+  PanierRoute: PanierRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TemoignagesRoute: TemoignagesRoute,
+  AdminCommandesRoute: AdminCommandesRoute,
+  AdminProduitsRoute: AdminProduitsRoute,
+  ApiProductsRoute: ApiProductsRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  ApiAdminOrdersRoute: ApiAdminOrdersRouteWithChildren,
+  ApiAdminStatsRoute: ApiAdminStatsRoute,
+  ApiAuthLoginRoute: ApiAuthLoginRoute,
+  ApiAuthLogoutRoute: ApiAuthLogoutRoute,
+  ApiAuthMeRoute: ApiAuthMeRoute,
+  ApiAuthRegisterRoute: ApiAuthRegisterRoute,
+  ApiCartAddRoute: ApiCartAddRoute,
+  ApiCartRemoveRoute: ApiCartRemoveRoute,
+  ApiCartUpdateRoute: ApiCartUpdateRoute,
+  ApiOrdersIdRoute: ApiOrdersIdRoute,
+  ApiOrdersCreateRoute: ApiOrdersCreateRoute,
+  ApiCartIndexRoute: ApiCartIndexRoute,
+  ApiOrdersIndexRoute: ApiOrdersIndexRoute,
+  ApiAdminProductsCreateRoute: ApiAdminProductsCreateRoute,
+  ApiAdminProductsDeleteRoute: ApiAdminProductsDeleteRoute,
+  ApiAdminProductsUpdateRoute: ApiAdminProductsUpdateRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

@@ -1,6 +1,7 @@
 import { json } from "@tanstack/react-start";
-import { createAPIFileRoute } from "@tanstack/react-start/api";
+import { createFileRoute } from "@tanstack/react-router";
 import { createUser, createSession } from "@/lib/auth";
+import { sessionCookieAttributes } from "@/lib/cookies";
 import { z } from "zod";
 
 const registerSchema = z.object({
@@ -11,7 +12,8 @@ const registerSchema = z.object({
   telephone: z.string().optional(),
 });
 
-export const APIRoute = createAPIFileRoute("/api/auth/register")({
+export const Route = createFileRoute("/api/auth/register")({
+  server: { handlers: {
   POST: async ({ request }) => {
     try {
       const body = await request.json();
@@ -36,12 +38,12 @@ export const APIRoute = createAPIFileRoute("/api/auth/register")({
         },
         {
           headers: {
-            "Set-Cookie": `dam_session=${sessionId}; Path=/; HttpOnly; SameSite=Lax; Expires=${expiresAt.toUTCString()}`,
+            "Set-Cookie": `dam_session=${sessionId}; ${sessionCookieAttributes(request)}; Expires=${expiresAt.toUTCString()}`,
           },
         }
       );
     } catch (error: any) {
-      if (error.code === "SQLITE_CONSTRAINT") {
+      if (error.code === "23505") {
         return json({ success: false, error: "Cet email est déjà utilisé" }, { status: 400 });
       }
 
@@ -52,4 +54,5 @@ export const APIRoute = createAPIFileRoute("/api/auth/register")({
       return json({ success: false, error: error.message || "Erreur lors de l'inscription" }, { status: 500 });
     }
   },
+  } },
 });

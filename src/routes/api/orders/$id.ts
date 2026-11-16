@@ -1,9 +1,10 @@
 import { json } from "@tanstack/react-start";
-import { createAPIFileRoute } from "@tanstack/react-start/api";
+import { createFileRoute } from "@tanstack/react-router";
 import { db, orders, orderItems } from "@/db";
 import { eq } from "drizzle-orm";
 
-export const APIRoute = createAPIFileRoute("/api/orders/$id")({
+export const Route = createFileRoute("/api/orders/$id")({
+  server: { handlers: {
   GET: async ({ request, params }) => {
     try {
       const orderId = params.id;
@@ -40,4 +41,5 @@ export const APIRoute = createAPIFileRoute("/api/orders/$id")({
       );
     }
   },
+  } },
 });

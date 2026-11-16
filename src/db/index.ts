@@ -1,8 +1,14 @@
-import Database from "better-sqlite3";
-import { drizzle } from "drizzle-orm/better-sqlite3";
+import { Pool } from "pg";
+import { drizzle } from "drizzle-orm/node-postgres";
 import * as schema from "./schema";
 
-const sqlite = new Database("./dam.db");
-export const db = drizzle(sqlite, { schema });
+const connectionString = process.env.DATABASE_URL;
+
+if (!connectionString) {
+  throw new Error("DATABASE_URL is required to connect to the application database.");
+}
+
+export const pool = new Pool({ connectionString });
+export const db = drizzle(pool, { schema });
 
 export * from "./schema";

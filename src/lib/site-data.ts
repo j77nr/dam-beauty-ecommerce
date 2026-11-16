@@ -1,11 +1,3 @@
-import hairOil from "@/assets/product-hair-oil.jpg";
-import cream from "@/assets/product-cream.jpg";
-import mask from "@/assets/product-mask.jpg";
-import serum from "@/assets/product-serum.jpg";
-import blogHair from "@/assets/blog-hair.jpg";
-import blogSkincare from "@/assets/blog-skincare.jpg";
-import blogKarite from "@/assets/blog-karite.jpg";
-
 export const SITE = {
   name: "DAM",
   tagline: "Beauty & Cosmetics",
@@ -42,7 +34,7 @@ export const PRODUCTS: Product[] = [
     subtitle: "Soin intense & brillance",
     price: 15000,
     category: "capillaire",
-    image: hairOil,
+    image: "/products/product-hair-oil.jpg",
     short: "Une huile multi-actifs qui répare, nourrit et illumine la fibre capillaire dès la première application.",
     description:
       "Notre Élixir Capillaire Précieux est conçu pour les cheveux secs, abîmés ou en demande de soin profond. Sa formule légère, non-grasse, pénètre instantanément pour restaurer la brillance et la souplesse, tout en protégeant des agressions du climat équatorial.",
@@ -55,7 +47,7 @@ export const PRODUCTS: Product[] = [
     subtitle: "Visage & décolleté",
     price: 12500,
     category: "visage",
-    image: cream,
+    image: "/products/product-cream.jpg",
     short: "Une crème jour fondante qui hydrate, unifie et révèle l'éclat naturel de la peau.",
     description:
       "Formulée à partir d'actifs botaniques sélectionnés, cette crème offre une hydratation longue durée sans effet gras. Elle apaise les peaux sensibilisées par la chaleur et lisse le grain de peau pour un teint frais au quotidien.",
@@ -68,7 +60,7 @@ export const PRODUCTS: Product[] = [
     subtitle: "Nutrition profonde",
     price: 8000,
     category: "capillaire",
-    image: mask,
+    image: "/products/product-mask.jpg",
     short: "Un masque hebdomadaire ultra-nourrissant pour cheveux assoiffés et fragilisés.",
     description:
       "Riche en beurre de karité brut et en huiles précieuses, ce masque restaure la fibre en profondeur, dompte les frisottis et redonne du corps aux cheveux les plus secs.",
@@ -81,7 +73,7 @@ export const PRODUCTS: Product[] = [
     subtitle: "Purifiant & apaisant",
     price: 18000,
     category: "visage",
-    image: serum,
+    image: "/products/product-serum.jpg",
     short: "Un sérum ciblé qui régule, purifie et apaise les peaux mixtes à imperfections.",
     description:
       "Sa texture fluide pénètre rapidement pour réduire visiblement les imperfections, resserrer les pores et harmoniser le teint. Utilisable en cure ou au quotidien.",
@@ -94,7 +86,7 @@ export const PRODUCTS: Product[] = [
     subtitle: "Multi-usages corps & cheveux",
     price: 9500,
     category: "naturel",
-    image: hairOil,
+    image: "/products/product-hair-oil.jpg",
     short: "Une huile végétale 100% pure, pressée à froid, riche en oméga 3, 6 et 9.",
     description:
       "Trésor de l'Afrique de l'Ouest, l'huile de baobab nourrit, assouplit et raffermit. Elle s'utilise sur le corps, le visage et les cheveux pour un soin polyvalent et naturel.",
@@ -107,7 +99,7 @@ export const PRODUCTS: Product[] = [
     subtitle: "Purifie & exfolie",
     price: 3500,
     category: "naturel",
-    image: mask,
+    image: "/products/product-mask.jpg",
     short: "Un savon traditionnel ouest-africain qui nettoie en douceur et révèle l'éclat de la peau.",
     description:
       "Fabriqué à la main selon une recette ancestrale, le savon noir purifie en profondeur sans agresser. Il convient à tous les types de peaux et de cheveux.",
@@ -134,7 +126,7 @@ export const POSTS: BlogPost[] = [
       "Le rituel capillaire qui transforme vos boucles : routine simple, gestes précis, produits ciblés pour une définition longue durée.",
     category: "Soin capillaire",
     date: "2026-05-14",
-    image: blogHair,
+    image: "/products/blog-hair.jpg",
     content:
       "Des boucles bien définies commencent par une bonne hydratation. La technique du LOC (Liquid, Oil, Cream) reste l'une des plus efficaces sous climat équatorial. Commencez par vaporiser de l'eau ou un spray hydratant, scellez l'hydratation avec une huile légère comme l'huile de jojoba, puis appliquez une crème coiffante. Travaillez vos boucles mèche par mèche pour une définition optimale, puis laissez sécher à l'air libre ou utilisez un diffuseur à basse température.",
   },
@@ -145,7 +137,7 @@ export const POSTS: BlogPost[] = [
       "Sous le climat de Lomé, la peau a besoin d'un soin ciblé. Découvrez les gestes essentiels pour un éclat sans compromis.",
     category: "Cosmétique visage",
     date: "2026-05-02",
-    image: blogSkincare,
+    image: "/products/blog-skincare.jpg",
     content:
       "La clé d'un teint lumineux réside dans la régularité plus que dans la quantité de produits. Un nettoyage doux matin et soir, un sérum vitamine C le matin, une crème hydratante adaptée à votre type de peau et une protection solaire SPF 30 minimum suffisent à transformer votre peau en quelques semaines. N'oubliez pas l'exfoliation enzymatique une à deux fois par semaine pour libérer l'éclat.",
   },
@@ -156,7 +148,7 @@ export const POSTS: BlogPost[] = [
       "Pourquoi le karité non-raffiné, encore appelé l'or des femmes, reste l'allié beauté indétrônable du continent.",
     category: "Conseils",
     date: "2026-04-22",
-    image: blogKarite,
+    image: "/products/blog-karite.jpg",
     content:
       "Le beurre de karité brut conserve l'ensemble de ses actifs : insaponifiables, vitamines A, D, E et F, acides gras essentiels. Là où le karité raffiné a perdu jusqu'à 80% de ses propriétés, le karité brut nourrit, répare, protège et apaise. Idéal pour les peaux sèches, les cheveux abîmés, les vergetures et même comme baume après-soleil.",
   },

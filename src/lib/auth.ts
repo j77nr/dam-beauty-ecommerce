@@ -1,5 +1,5 @@
 import { db, users, sessions } from "@/db";
-import { eq } from "drizzle-orm";
+import { eq, lt } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 import { nanoid } from "nanoid";
 
@@ -110,5 +110,5 @@ export async function deleteSession(sessionId: string) {
 
 // Supprimer toutes les sessions expirées
 export async function cleanExpiredSessions() {
-  await db.delete(sessions).where(eq(sessions.expiresAt, new Date()));
+  await db.delete(sessions).where(lt(sessions.expiresAt, new Date()));
 }

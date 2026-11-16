@@ -1,12 +1,13 @@
 import { json } from "@tanstack/react-start";
-import { createAPIFileRoute } from "@tanstack/react-start/api";
+import { createFileRoute } from "@tanstack/react-router";
 import { validateSession } from "@/lib/auth";
-import { parse } from "cookie";
+import { parseCookieHeader } from "@/lib/cookies";
 
-export const APIRoute = createAPIFileRoute("/api/auth/me")({
+export const Route = createFileRoute("/api/auth/me")({
+  server: { handlers: {
   GET: async ({ request }) => {
     const cookieHeader = request.headers.get("Cookie");
-    const cookies = parse(cookieHeader || "");
+    const cookies = parseCookieHeader(cookieHeader);
     const sessionId = cookies.dam_session;
 
     const session = await validateSession(sessionId);
@@ -20,4 +21,5 @@ export const APIRoute = createAPIFileRoute("/api/auth/me")({
       user: session,
     });
   },
+  } },
 });

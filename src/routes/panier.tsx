@@ -57,7 +57,8 @@ function PanierPage() {
                 key={item.id}
                 className="flex gap-6 border-b border-border pb-6 last:border-0"
               >
-                <Link to={`/catalogue/${item.product.slug}`} className="flex-shrink-0">
+                <Link to="/catalogue/$slug"
+                  params={{ slug: item.product.slug }} className="flex-shrink-0">
                   <img
                     src={item.product.image}
                     alt={item.product.name}
@@ -68,7 +69,8 @@ function PanierPage() {
                 <div className="flex-1 flex flex-col justify-between">
                   <div>
                     <Link
-                      to={`/catalogue/${item.product.slug}`}
+                      to="/catalogue/$slug"
+                  params={{ slug: item.product.slug }}
                       className="font-serif text-xl hover:underline underline-offset-4"
                     >
                       {item.product.name}

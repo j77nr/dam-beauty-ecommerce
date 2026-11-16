@@ -1,8 +1,8 @@
 import { json } from "@tanstack/react-start";
-import { createAPIFileRoute } from "@tanstack/react-start/api";
+import { createFileRoute } from "@tanstack/react-router";
 import { db, carts, cartItems, orders, orderItems, products } from "@/db";
 import { eq } from "drizzle-orm";
-import { parse } from "cookie";
+import { parseCookieHeader } from "@/lib/cookies";
 import { validateSession } from "@/lib/auth";
 import { z } from "zod";
 import { nanoid } from "nanoid";
@@ -29,14 +29,15 @@ const createOrderSchema = z.object({
   notes: z.string().optional(),
 });
 
-export const APIRoute = createAPIFileRoute("/api/orders/create")({
+export const Route = createFileRoute("/api/orders/create")({
+  server: { handlers: {
   POST: async ({ request }) => {
     try {
       const body = await request.json();
       const data = createOrderSchema.parse(body);
 
       const cookieHeader = request.headers.get("Cookie");
-      const cookies = parse(cookieHeader || "");
+      const cookies = parseCookieHeader(cookieHeader);
       const session = await validateSession(cookies.dam_session);
       const sessionId = cookies.dam_cart_session;
 
@@ -134,4 +135,5 @@ export const APIRoute = createAPIFileRoute("/api/orders/create")({
       return json({ success: false, error: "Erreur lors de la création de la commande" }, { status: 500 });
     }
   },
+  } },
 });

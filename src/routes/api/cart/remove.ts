@@ -1,25 +1,37 @@
 import { json } from "@tanstack/react-start";
-import { createAPIFileRoute } from "@tanstack/react-start/api";
+import { createFileRoute } from "@tanstack/react-router";
 import { db, cartItems } from "@/db";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
+import { getCartForRequest } from "@/lib/cart-session";
 import { z } from "zod";
 
 const removeFromCartSchema = z.object({
-  itemId: z.number(),
+  itemId: z.number().int().positive(),
 });
 
-export const APIRoute = createAPIFileRoute("/api/cart/remove")({
+export const Route = createFileRoute("/api/cart/remove")({
+  server: { handlers: {
   DELETE: async ({ request }) => {
     try {
       const body = await request.json();
       const data = removeFromCartSchema.parse(body);
+      const cart = await getCartForRequest(request);
+      if (!cart) {
+        return json({ success: false, error: "Panier introuvable" }, { status: 404 });
+      }
 
-      const [item] = await db.select().from(cartItems).where(eq(cartItems.id, data.itemId)).limit(1);
+      const [item] = await db
+        .select()
+        .from(cartItems)
+        .where(and(eq(cartItems.id, data.itemId), eq(cartItems.cartId, cart.id)))
+        .limit(1);
       if (!item) {
         return json({ success: false, error: "Article introuvable" }, { status: 404 });
       }
 
-      await db.delete(cartItems).where(eq(cartItems.id, data.itemId));
+      await db
+        .delete(cartItems)
+        .where(and(eq(cartItems.id, data.itemId), eq(cartItems.cartId, cart.id)));
 
       return json({ success: true, message: "Article retiré du panier" });
     } catch (error: any) {
@@ -29,4 +41,5 @@ export const APIRoute = createAPIFileRoute("/api/cart/remove")({
       return json({ success: false, error: "Erreur lors de la suppression" }, { status: 500 });
     }
   },
+  } },
 });

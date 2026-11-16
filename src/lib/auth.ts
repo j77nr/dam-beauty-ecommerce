@@ -2,7 +2,9 @@ import { db, users, sessions } from "@/db";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 import { nanoid } from "nanoid";
-const SESSION_DURATION = 30 * 24 * 60 * 60 * 1000;
+
+const SESSION_DURATION = 30 * 24 * 60 * 60 * 1000; // 30 jours
+
 export interface SessionData {
   userId: number;
   email: string;
@@ -10,6 +12,8 @@ export interface SessionData {
   prenom: string;
   role: string;
 }
+
+// Créer un utilisateur
 export async function createUser(data: {
   email: string;
   password: string;
@@ -18,6 +22,7 @@ export async function createUser(data: {
   telephone?: string;
 }) {
   const hashedPassword = await bcrypt.hash(data.password, 10);
+
   const [user] = await db
     .insert(users)
     .values({
@@ -29,46 +34,66 @@ export async function createUser(data: {
       role: "client",
     })
     .returning();
+
   return user;
 }
+
+// Authentifier un utilisateur
 export async function authenticateUser(email: string, password: string) {
   const [user] = await db.select().from(users).where(eq(users.email, email.toLowerCase())).limit(1);
+
   if (!user) {
     throw new Error("Email ou mot de passe incorrect");
   }
+
   const isValid = await bcrypt.compare(password, user.password);
   if (!isValid) {
     throw new Error("Email ou mot de passe incorrect");
   }
+
   return user;
 }
+
+// Créer une session
 export async function createSession(userId: number) {
   const sessionId = nanoid();
   const expiresAt = new Date(Date.now() + SESSION_DURATION);
+
   await db.insert(sessions).values({
     id: sessionId,
     userId,
     expiresAt,
   });
+
   return { sessionId, expiresAt };
 }
+
+// Valider une session
 export async function validateSession(sessionId: string | undefined): Promise<SessionData | null> {
   if (!sessionId) return null;
+
   const [session] = await db
     .select()
     .from(sessions)
     .where(eq(sessions.id, sessionId))
     .limit(1);
+
   if (!session) return null;
+
+  // Vérifier si la session n'est pas expirée
   if (session.expiresAt < new Date()) {
     await db.delete(sessions).where(eq(sessions.id, sessionId));
     return null;
   }
+
+  // Récupérer les infos utilisateur
   const [user] = await db.select().from(users).where(eq(users.id, session.userId)).limit(1);
+
   if (!user) {
     await db.delete(sessions).where(eq(sessions.id, sessionId));
     return null;
   }
+
   return {
     userId: user.id,
     email: user.email,
@@ -77,9 +102,13 @@ export async function validateSession(sessionId: string | undefined): Promise<Se
     role: user.role,
   };
 }
+
+// Supprimer une session (logout)
 export async function deleteSession(sessionId: string) {
   await db.delete(sessions).where(eq(sessions.id, sessionId));
 }
+
+// Supprimer toutes les sessions expirées
 export async function cleanExpiredSessions() {
   await db.delete(sessions).where(eq(sessions.expiresAt, new Date()));
 }

@@ -94,16 +94,6 @@ function ContactPage() {
                 9 h 00 — 19 h 00
               </p>
             </div>
-            <div>
-              <h3 className="text-[11px] uppercase tracking-[0.25em] font-semibold mb-4">
-                Suivez-nous
-              </h3>
-              <div className="flex gap-6">
-                <a href={SITE.instagram} target="_blank" rel="noopener" className="link-underline">Instagram</a>
-                <a href={SITE.facebook} target="_blank" rel="noopener" className="link-underline">Facebook</a>
-                <a href={SITE.tiktok} target="_blank" rel="noopener" className="link-underline">TikTok</a>
-              </div>
-            </div>
           </aside>
 
           <form onSubmit={onSubmit} className="lg:col-span-3 space-y-6" noValidate>

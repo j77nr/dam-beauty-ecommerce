@@ -1,17 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import heroPortrait from "@/assets/hero-portrait.jpg";
+import heroPortrait from "@/assets/dam-hero-campaign.png";
 import textureOil from "@/assets/texture-oil.jpg";
-import { PRODUCTS, POSTS, TESTIMONIALS, SITE, formatPrice } from "@/lib/site-data";
+import { PRODUCTS, POSTS, SITE } from "@/lib/site-data";
 import { ProductCard } from "@/components/product-card";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "DAM — Beauty & Cosmetics | Lomé, Togo" },
-      { name: "description", content: "Soins capillaires, cosmétiques visage et produits naturels conçus à Lomé. Découvrez la maison DAM, beauté premium pour tous." },
-      { property: "og:title", content: "DAM — Beauty & Cosmetics" },
-      { property: "og:description", content: "Soins capillaires et cosmétiques premium, conçus à Lomé." },
+      { title: "DAM — Soins botaniques à Lomé, Togo" },
+      { name: "description", content: "Découvrez les soins visage et cheveux DAM, inspirés des richesses botaniques ouest-africaines et imaginés à Lomé." },
+      { property: "og:title", content: "DAM — Soins botaniques à Lomé" },
+      { property: "og:description", content: "Des rituels visage et cheveux inspirés des richesses botaniques de l’Afrique de l’Ouest." },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -26,40 +26,57 @@ function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative min-h-[88vh] flex items-center overflow-hidden bg-beige-soft">
-        <div className="container mx-auto px-6 lg:px-10 grid grid-cols-12 items-center gap-8 py-16 lg:py-0">
-          <div className="col-span-12 lg:col-span-5 z-10">
-            <span className="text-[10px] uppercase tracking-[0.35em] text-accent mb-6 block font-medium">
-              Essence de Lomé · Édition 2026
+      <section className="relative overflow-hidden bg-beige-soft">
+        <div className="container mx-auto grid grid-cols-1 items-center gap-10 px-6 py-12 sm:py-16 lg:min-h-[calc(100svh-4rem)] lg:grid-cols-12 lg:gap-4 lg:px-10 lg:py-10">
+          <div className="relative z-10 lg:col-span-5 lg:pr-4">
+            <span className="mb-6 block text-[10px] font-medium uppercase tracking-[0.35em] text-accent">
+              Maison de beauté · Lomé, Togo
             </span>
-            <h1 className="font-serif text-5xl sm:text-6xl lg:text-8xl leading-[0.9] mb-8">
-              La Beauté <br />
-              <span className="italic font-normal">Sublimée</span>
+            <h1 className="mb-7 max-w-xl font-serif text-5xl leading-[0.94] tracking-tight sm:text-6xl lg:text-[5.5rem]">
+              L’éclat vient <br />
+              <span className="italic font-normal">de nos racines.</span>
             </h1>
-            <p className="max-w-sm text-sm leading-relaxed mb-10 text-foreground/70">
-              Une sélection exclusive de soins capillaires et cosmétiques pensés pour magnifier
-              votre éclat naturel, chaque jour, partout au Togo.
+            <p className="mb-9 max-w-sm text-sm leading-7 text-foreground/70">
+              Des rituels visage et cheveux inspirés des richesses botaniques de l’Afrique de l’Ouest,
+              imaginés à Lomé pour accompagner votre beauté au quotidien.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap items-center gap-6">
               <Link
                 to="/catalogue"
-                className="bg-ink text-ivory px-10 py-4 text-[11px] uppercase tracking-[0.25em] hover:bg-accent transition-colors inline-flex items-center gap-3"
+                className="inline-flex items-center gap-3 bg-ink px-8 py-4 text-[10px] uppercase tracking-[0.22em] text-ivory transition-colors hover:bg-accent"
               >
-                Explorer la collection <ArrowRight size={14} />
+                Découvrir les soins <ArrowRight size={14} />
               </Link>
-              <Link to="/a-propos" className="link-underline self-center">
-                Notre histoire
-              </Link>
+              <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                Le soin, à votre rythme
+              </span>
+            </div>
+            <div className="mt-12 hidden items-center gap-4 border-t border-ink/15 pt-5 lg:flex">
+              <span className="font-serif text-2xl italic">01</span>
+              <span className="text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
+                Visage · Cheveux · Naturel
+              </span>
             </div>
           </div>
-          <div className="col-span-12 lg:col-span-7 relative h-full flex justify-end">
-            <img
-              src={heroPortrait}
-              alt="Portrait éditorial DAM"
-              width={1024}
-              height={1280}
-              className="w-full lg:w-[88%] aspect-[4/5] object-cover shadow-soft"
-            />
+          <div className="absolute inset-y-0 right-0 w-[68%] opacity-50 lg:relative lg:col-span-7 lg:w-auto lg:pl-5 lg:opacity-100">
+            <div className="relative h-full w-full overflow-hidden bg-beige lg:ml-auto lg:aspect-[4/4.7] lg:h-auto lg:max-w-[660px]">
+              <img
+                src={heroPortrait}
+                alt="Portrait éditorial d’une femme aux cheveux naturels, accompagné de soins botaniques DAM."
+                width={1024}
+                height={1280}
+                fetchPriority="high"
+                className="h-full w-full object-cover object-[58%_center]"
+              />
+              <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-beige-soft via-beige-soft/60 to-transparent lg:hidden" />
+              <div className="absolute bottom-5 left-5 hidden bg-ivory/90 px-4 py-3 backdrop-blur-sm lg:block lg:bottom-7 lg:left-7 lg:px-5">
+                <p className="text-[9px] uppercase tracking-[0.22em]">L’essentiel, naturellement</p>
+                <p className="mt-1 font-serif text-lg italic">DAM · Lomé</p>
+              </div>
+            </div>
+            <span aria-hidden="true" className="absolute -right-2 top-8 hidden font-serif text-sm italic text-muted-foreground [writing-mode:vertical-rl] lg:block">
+              BEAUTÉ EN CONSCIENCE
+            </span>
           </div>
         </div>
       </section>
@@ -187,20 +204,25 @@ function HomePage() {
         </div>
       </section>
 
-      {/* TESTIMONIAL */}
-      <section className="py-32 bg-beige-soft">
-        <div className="container mx-auto px-6 lg:px-10 max-w-3xl text-center">
-          <span className="text-[10px] uppercase tracking-[0.35em] text-accent mb-10 block">
-            Voix de nos clientes
-          </span>
-          <blockquote className="font-serif italic text-3xl md:text-4xl leading-snug mb-8">
-            “{TESTIMONIALS[0].quote}”
-          </blockquote>
-          <p className="text-[11px] uppercase tracking-[0.25em] font-medium">
-            {TESTIMONIALS[0].author} — {TESTIMONIALS[0].role}
-          </p>
-          <div className="mt-10">
-            <Link to="/temoignages" className="link-underline">Lire les avis</Link>
+      {/* BRAND MANIFESTO */}
+      <section className="bg-ink py-20 text-ivory sm:py-28">
+        <div className="container mx-auto grid grid-cols-1 gap-10 px-6 lg:grid-cols-12 lg:items-end lg:px-10">
+          <div className="lg:col-span-7">
+            <span className="mb-6 block text-[10px] uppercase tracking-[0.3em] text-beige-deep">
+              Une maison, une intention
+            </span>
+            <h2 className="max-w-3xl font-serif text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
+              La beauté n’a pas besoin d’en faire trop.
+            </h2>
+          </div>
+          <div className="lg:col-span-4 lg:col-start-9">
+            <p className="mb-7 max-w-md text-sm leading-7 text-ivory/70">
+              Choisir un soin, c’est prendre un instant pour soi. DAM vous aide à trouver les gestes
+              et les textures qui s’accordent à vos envies, avec une maison ancrée à Lomé.
+            </p>
+            <Link to="/contact" className="link-underline text-ivory">
+              Parlons de votre routine
+            </Link>
           </div>
         </div>
       </section>
@@ -233,5 +255,3 @@ function HomePage() {
     </>
   );
 }
-
-void formatPrice;

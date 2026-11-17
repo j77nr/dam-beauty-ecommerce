@@ -8,8 +8,7 @@ export function SiteFooter() {
         <div>
           <h2 className="font-serif text-3xl font-semibold mb-6">DAM</h2>
           <p className="text-xs leading-relaxed text-muted-foreground max-w-[26ch]">
-            Votre destination beauté premium à Lomé. Soins capillaires et cosmétiques pensés pour
-            sublimer chaque peau, chaque chevelure.
+            Une maison de beauté ancrée à Lomé, dédiée aux rituels visage, cheveux et naturels inspirés par l’Afrique de l’Ouest.
           </p>
         </div>
         <div>
@@ -19,7 +18,7 @@ export function SiteFooter() {
             <li><Link to="/catalogue" className="hover:text-accent">Boutique</Link></li>
             <li><Link to="/blog" className="hover:text-accent">Blog</Link></li>
             <li><Link to="/galerie" className="hover:text-accent">Galerie</Link></li>
-            <li><Link to="/temoignages" className="hover:text-accent">Témoignages</Link></li>
+            <li><Link to="/temoignages" className="hover:text-accent">Votre avis</Link></li>
             <li><Link to="/faq" className="hover:text-accent">FAQ</Link></li>
           </ul>
         </div>
@@ -66,11 +65,9 @@ export function SiteFooter() {
         <p className="text-[10px] text-muted-foreground uppercase tracking-[0.2em]">
           © {new Date().getFullYear()} DAM Beauty & Cosmetics — Tous droits réservés.
         </p>
-        <div className="flex gap-6">
-          <a href={SITE.instagram} target="_blank" rel="noopener" className="text-[10px] uppercase tracking-[0.2em] hover:text-accent">Instagram</a>
-          <a href={SITE.facebook} target="_blank" rel="noopener" className="text-[10px] uppercase tracking-[0.2em] hover:text-accent">Facebook</a>
-          <a href={SITE.tiktok} target="_blank" rel="noopener" className="text-[10px] uppercase tracking-[0.2em] hover:text-accent">TikTok</a>
-        </div>
+        <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+          {SITE.city} · Beauté en conscience
+        </p>
       </div>
     </footer>
   );

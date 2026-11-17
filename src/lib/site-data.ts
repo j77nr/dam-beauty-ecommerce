@@ -1,15 +1,12 @@
 export const SITE = {
   name: "DAM",
-  tagline: "Beauty & Cosmetics",
+  tagline: "Soins & cosmétiques naturels",
   city: "Lomé, Togo",
   address: "Quartier Administratif, Lomé — Togo",
   phone: "+228 98 14 54 29",
   phoneRaw: "22898145429",
   email: "akakpodeborah1@gmail.com",
   whatsapp: "https://wa.me/22898145429",
-  instagram: "https://instagram.com",
-  facebook: "https://facebook.com",
-  tiktok: "https://tiktok.com",
 };
 
 export type Category = "capillaire" | "visage" | "naturel";
@@ -151,33 +148,6 @@ export const POSTS: BlogPost[] = [
     image: "/products/blog-karite.jpg",
     content:
       "Le beurre de karité brut conserve l'ensemble de ses actifs : insaponifiables, vitamines A, D, E et F, acides gras essentiels. Là où le karité raffiné a perdu jusqu'à 80% de ses propriétés, le karité brut nourrit, répare, protège et apaise. Idéal pour les peaux sèches, les cheveux abîmés, les vergetures et même comme baume après-soleil.",
-  },
-];
-
-export const TESTIMONIALS = [
-  {
-    quote:
-      "Depuis que j'utilise l'Élixir Capillaire, mes cheveux ont retrouvé une brillance que je n'avais plus depuis des années. Un vrai coup de cœur.",
-    author: "Sophie M.",
-    role: "Cliente depuis 2024",
-  },
-  {
-    quote:
-      "Le savon noir DAM a totalement changé ma routine. Ma peau respire enfin, et le service est aux petits soins.",
-    author: "Kossi A.",
-    role: "Lomé",
-  },
-  {
-    quote:
-      "Des produits sérieux, une équipe à l'écoute, des conseils précis. DAM est devenu ma référence beauté à Lomé.",
-    author: "Aïcha B.",
-    role: "Fidèle depuis 2023",
-  },
-  {
-    quote:
-      "Le masque karité est une merveille. Mes cheveux sont nourris, doux, et la texture du produit est sublime.",
-    author: "Lina K.",
-    role: "Cliente régulière",
   },
 ];
 

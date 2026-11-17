@@ -1,12 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { TESTIMONIALS } from "@/lib/site-data";
+import { MessageCircle } from "lucide-react";
+import { SITE } from "@/lib/site-data";
 
 export const Route = createFileRoute("/temoignages")({
   head: () => ({
     meta: [
-      { title: "Témoignages clients — DAM" },
-      { name: "description", content: "Les avis et témoignages de nos clientes et clients sur les soins capillaires et cosmétiques DAM." },
-      { property: "og:title", content: "Témoignages — DAM" },
+      { title: "Votre avis — DAM Beauty" },
+      { name: "description", content: "Vous avez essayé un soin DAM ? Partagez votre expérience directement avec notre maison à Lomé." },
+      { property: "og:title", content: "Votre avis — DAM Beauty" },
       { property: "og:url", content: "/temoignages" },
     ],
     links: [{ rel: "canonical", href: "/temoignages" }],
@@ -15,34 +16,42 @@ export const Route = createFileRoute("/temoignages")({
 });
 
 function TestimonialsPage() {
-  return (
-    <>
-      <section className="py-20 lg:py-28 bg-beige-soft">
-        <div className="container mx-auto px-6 lg:px-10 max-w-4xl text-center">
-          <span className="eyebrow text-accent mb-6 block">Témoignages</span>
-          <h1 className="font-serif text-5xl lg:text-7xl leading-[0.95]">
-            Elles et ils <span className="italic">parlent de DAM</span>.
-          </h1>
-        </div>
-      </section>
+  const message = encodeURIComponent("Bonjour DAM, je souhaite partager mon expérience avec vos soins.");
 
-      <section className="py-24">
-        <div className="container mx-auto px-6 lg:px-10 max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
-            {TESTIMONIALS.map((t, i) => (
-              <figure key={i} className="border-l border-ink/15 pl-8">
-                <span className="font-serif text-5xl text-accent leading-none block mb-4">"</span>
-                <blockquote className="font-serif italic text-2xl leading-snug mb-6">
-                  {t.quote}
-                </blockquote>
-                <figcaption className="text-[11px] uppercase tracking-[0.25em] font-medium">
-                  {t.author} <span className="text-muted-foreground">— {t.role}</span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
+  return (
+    <div>
+      <section className="bg-beige-soft py-20 lg:py-28">
+        <div className="container mx-auto max-w-4xl px-6 text-center lg:px-10">
+          <span className="eyebrow mb-6 block text-accent">La parole est à vous</span>
+          <h1 className="font-serif text-5xl leading-[0.95] lg:text-7xl">
+            Votre expérience <span className="italic">compte.</span>
+          </h1>
+          <p className="mx-auto mt-7 max-w-xl text-sm leading-7 text-foreground/70">
+            Nous préférons partager de vrais retours, avec l’accord des personnes qui les ont écrits.
+            Vous avez déjà découvert un soin DAM ? Racontez-nous ce qui vous a plu — ou ce que nous
+            pouvons améliorer.
+          </p>
+          <a
+            href={`${SITE.whatsapp}?text=${message}`}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-9 inline-flex items-center gap-3 bg-ink px-8 py-4 text-[10px] uppercase tracking-[0.2em] text-ivory transition-colors hover:bg-accent"
+          >
+            <MessageCircle size={16} aria-hidden="true" />
+            Partager mon retour
+          </a>
         </div>
       </section>
-    </>
+      <section className="py-16 lg:py-24">
+        <div className="container mx-auto max-w-3xl px-6 text-center lg:px-10">
+          <p className="font-serif text-2xl italic leading-relaxed sm:text-3xl">
+            « Chaque rituel est personnel. Vos mots aideront d’autres personnes à choisir le leur. »
+          </p>
+          <p className="mt-5 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+            La maison DAM · Lomé, Togo
+          </p>
+        </div>
+      </section>
+    </div>
   );
 }
